@@ -11,6 +11,14 @@
 	</properties>
 
 	<dependencies>
+	 	<!-- Weld (implementação do CDI) -->
+        <dependency>
+            <groupId>org.jboss.weld.servlet</groupId>
+            <artifactId>weld-servlet</artifactId>
+            <version>1.1.10.Final</version>
+            <scope>compile</scope>
+		</dependency>
+	
 		<!-- PrimeFaces (biblioteca de componentes) -->
 		<dependency>
 			<groupId>org.primefaces</groupId>
