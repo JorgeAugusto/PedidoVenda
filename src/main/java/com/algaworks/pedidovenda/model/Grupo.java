@@ -9,7 +9,6 @@ public class Grupo implements Serializable {
 	private Long id;
 	private String nome;
 	private String descricao;
-	private Usuario usuario;
 
 	public Long getId() {
 		return id;
@@ -33,14 +32,6 @@ public class Grupo implements Serializable {
 
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
-	}
-
-	public Usuario getUsuario() {
-		return usuario;
-	}
-
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
 	}
 
 	@Override
