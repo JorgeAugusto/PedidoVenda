@@ -60,7 +60,7 @@ public class Produto implements Serializable {
 		this.sku = sku;
 	}
 
-	@NotNull
+	@NotNull(message = "é obrigatório")
 	@Column(name = "valor_unitario", nullable = false, precision = 10, scale = 2)
 	public BigDecimal getValorUnitario() {
 		return valorUnitario;
@@ -70,7 +70,7 @@ public class Produto implements Serializable {
 		this.valorUnitario = valorUnitario;
 	}
 
-	@NotNull @Min(0) @Max(9999)
+	@NotNull @Min(0) @Max(value = 9999, message = "tem um valor muito alto")
 	@Column(name = "quantidade_estoque", nullable = false, length = 5)
 	public Integer getQuantidadeEstoque() {
 		return quantidadeEstoque;
