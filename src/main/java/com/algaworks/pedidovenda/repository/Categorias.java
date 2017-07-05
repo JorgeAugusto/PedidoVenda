@@ -11,9 +11,13 @@ import com.algaworks.pedidovenda.model.Categoria;
 public class Categorias implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@Inject
 	private EntityManager manager;
+
+	public Categoria porId(Long id) {
+		return manager.find(Categoria.class, id);
+	}
 
 	public List<Categoria> raizes() {
 		return manager.createQuery("from Categoria", Categoria.class).getResultList();
