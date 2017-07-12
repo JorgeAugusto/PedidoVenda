@@ -5,12 +5,12 @@ import javax.faces.context.FacesContext;
 
 public class FacesUtil {
 
-	public static boolean isPostBack() {
+	public static boolean isPostback() {
 		return FacesContext.getCurrentInstance().isPostback();
 	}
 	
-	public static boolean isNotPostBack() {
-		return !isPostBack();
+	public static boolean isNotPostback() {
+		return !isPostback();
 	}
 	
 	public static void addErrorMessage(String message) {
