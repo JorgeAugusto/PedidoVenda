@@ -25,4 +25,12 @@ public class EstoqueService implements Serializable {
 		}
 	}
 
+	public void retornarItensEstoque(Pedido pedido) {
+		pedido = this.pedidos.porId(pedido.getId());
+		
+		for (ItemPedido item : pedido.getItens()) {
+			item.getProduto().adicionarEstoque(item.getQuantidade());
+		}
+	}
+
 }
