@@ -14,8 +14,8 @@
 
 	<ui:define name="corpo">
 
-		<p:lineChart value="#{graficoPedidosCriadosBean.model}" title="Pedidos criados"
-			style="height: 400px" animate="true" minY="0" legendPosition="e" />
+		<p:chart type="line" model="#{graficoPedidosCriadosBean.model}"
+			style="height: 400px" />
 
 	</ui:define>
 
