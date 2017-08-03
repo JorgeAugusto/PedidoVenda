@@ -23,7 +23,8 @@
 	    		<p:toolbarGroup>
 	    			<p:button value="Novo" outcome="/produtos/CadastroProduto" />
 	    			<p:commandButton value="Salvar" id="botaoSalvar"
-	    				action="#{cadastroProdutoBean.salvar}" update="@form" />
+	    				action="#{cadastroProdutoBean.salvar}" update="@form"
+	    				validateClient="true" />
 	    		</p:toolbarGroup>
 	    		<p:toolbarGroup align="right">
 	    			<p:button value="Pesquisa" outcome="/produtos/PesquisaProdutos" />
