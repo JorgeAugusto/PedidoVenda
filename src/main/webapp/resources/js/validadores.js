@@ -1,8 +1,22 @@
 PrimeFaces.locales['pt_BR'] = {
 	messages : {
-		'org.hibernate.validator.constraints.NotBlank.message' : '{0} não pode estar em branco'
+		'org.hibernate.validator.constraints.NotBlank.message' : '{0} não pode estar em branco',
+		'javax.validation.constraints.NotNull.message' : 'deve ser informado'
 	}
 }
+
+PrimeFaces.converter['com.algaworks.Categoria'] = {
+		
+		convert : function(element, value) {
+
+			if (value === null || value === '') {
+				return null;
+			}
+			
+			return value;
+		}
+			
+};
 
 PrimeFaces.validator.NotBlank = {
 	
