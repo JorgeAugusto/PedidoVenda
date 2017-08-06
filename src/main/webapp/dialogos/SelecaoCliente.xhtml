@@ -30,7 +30,8 @@
     			<h:outputText value="#{cliente.nome}" />
     		</p:column>
     		<p:column style="width: 30px; text-align: center">
-    			<p:commandButton icon="ui-icon-check" title="Selecionar" />
+    			<p:commandButton icon="ui-icon-check" title="Selecionar"
+    				process="@this" action="#{selecaoClienteBean.selecionar(cliente)}" />
     		</p:column>
     	</p:dataTable>
 	</h:form>
