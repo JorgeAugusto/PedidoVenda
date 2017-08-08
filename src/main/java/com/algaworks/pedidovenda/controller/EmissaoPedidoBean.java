@@ -9,6 +9,7 @@ import javax.inject.Named;
 
 import com.algaworks.pedidovenda.model.Pedido;
 import com.algaworks.pedidovenda.service.EmissaoPedidoService;
+import com.algaworks.pedidovenda.service.NegocioException;
 import com.algaworks.pedidovenda.util.jsf.FacesUtil;
 
 @Named
@@ -35,6 +36,8 @@ public class EmissaoPedidoBean implements Serializable {
 			this.pedidoAlteradoEvent.fire(new PedidoAlteradoEvent(this.pedido));
 
 			FacesUtil.addInfoMessage("Pedido emitido com sucesso!");
+		} catch (NegocioException ne) {
+			FacesUtil.addErrorMessage(ne.getMessage());
 		} finally {
 			this.pedido.adicionarItemVazio();
 		}

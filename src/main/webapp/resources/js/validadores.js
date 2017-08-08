@@ -18,6 +18,8 @@ PrimeFaces.converter['com.algaworks.Categoria'] = {
 			
 };
 
+PrimeFaces.converter['javax.faces.Number']['REGEX'] = /^[-+]?\d+(\.\d+)?(\,\d+)?[d]?$/;
+
 PrimeFaces.validator.NotBlank = {
 	
 	MESSAGE_ID : 'org.hibernate.validator.constraints.NotBlank.message',

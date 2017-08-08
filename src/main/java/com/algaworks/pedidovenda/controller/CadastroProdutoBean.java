@@ -13,6 +13,7 @@ import com.algaworks.pedidovenda.model.Categoria;
 import com.algaworks.pedidovenda.model.Produto;
 import com.algaworks.pedidovenda.repository.Categorias;
 import com.algaworks.pedidovenda.service.CadastroProdutoService;
+import com.algaworks.pedidovenda.service.NegocioException;
 import com.algaworks.pedidovenda.util.jsf.FacesUtil;
 
 @Named
@@ -58,10 +59,14 @@ public class CadastroProdutoBean implements Serializable {
 	}
 
 	public void salvar() {
-		produto = cadastroProdutoService.salvar(produto);
-		limpar();
-
-		FacesUtil.addInfoMessage("Produto salvo com sucesso!");
+		try {
+			produto = cadastroProdutoService.salvar(produto);
+			limpar();
+	
+			FacesUtil.addInfoMessage("Produto salvo com sucesso!");
+		} catch (NegocioException ne) {
+			FacesUtil.addErrorMessage(ne.getMessage());
+		}
 	}
 
 	public Produto getProduto() {

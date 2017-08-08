@@ -10,6 +10,7 @@ import javax.inject.Named;
 import com.algaworks.pedidovenda.model.Produto;
 import com.algaworks.pedidovenda.repository.Produtos;
 import com.algaworks.pedidovenda.repository.filter.ProdutoFilter;
+import com.algaworks.pedidovenda.service.NegocioException;
 import com.algaworks.pedidovenda.util.jsf.FacesUtil;
 
 @Named
@@ -31,11 +32,15 @@ public class PesquisaProdutosBean implements Serializable {
 	}
 
 	public void excluir() {
-		produtos.remover(produtoSelecionado);
-		produtosFiltrados.remove(produtoSelecionado);
-		
-		FacesUtil.addInfoMessage("Produto " + produtoSelecionado.getSku()
-				+ " excluído com sucesso.");
+		try {
+			produtos.remover(produtoSelecionado);
+			produtosFiltrados.remove(produtoSelecionado);
+			
+			FacesUtil.addInfoMessage("Produto " + produtoSelecionado.getSku()
+					+ " excluído com sucesso.");
+		} catch (NegocioException ne) {
+			FacesUtil.addErrorMessage(ne.getMessage());
+		}
 	}
 	
 	public void pesquisar() {
