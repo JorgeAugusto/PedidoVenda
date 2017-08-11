@@ -11,6 +11,14 @@
 	</properties>
 
 	<dependencies>
+		<!-- Tema do Bootstrap -->
+		<dependency>
+			<groupId>org.primefaces.themes</groupId>
+			<artifactId>bootstrap</artifactId>
+			<version>1.0.10</version>
+			<scope>compile</scope>
+		</dependency>
+	
 		<!-- Usado para geração de arquivos Excel -->
 		<dependency>
 		    <groupId>org.apache.poi</groupId>
@@ -172,6 +180,15 @@
 	        <scope>provided</scope>
 		</dependency>
 	</dependencies>
+	
+	<repositories>
+		<repository>
+			<id>prime-repo</id>
+			<name>Primefaces Maven Repository</name>
+			<url>http://repository.primefaces.org</url>
+			<layout>default</layout>
+		</repository>
+	</repositories>
 
 	<build>
 		<finalName>PedidoVenda</finalName>
