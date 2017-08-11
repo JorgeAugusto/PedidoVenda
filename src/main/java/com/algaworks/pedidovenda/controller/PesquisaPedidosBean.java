@@ -1,8 +1,8 @@
 package com.algaworks.pedidovenda.controller;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
@@ -14,6 +14,8 @@ import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Font;
 import org.apache.poi.ss.usermodel.IndexedColors;
+import org.primefaces.model.LazyDataModel;
+import org.primefaces.model.SortOrder;
 
 import com.algaworks.pedidovenda.model.Pedido;
 import com.algaworks.pedidovenda.model.StatusPedido;
@@ -30,15 +32,30 @@ private static final long serialVersionUID = 1L;
 	private Pedidos pedidos;
 	
 	private PedidoFilter filtro;
-	private List<Pedido> pedidosFiltrados;
+	private LazyDataModel<Pedido> model;
 	
 	public PesquisaPedidosBean() {
 		filtro = new PedidoFilter();
-		pedidosFiltrados = new ArrayList<>();
-	}
 
-	public void pesquisar() {
-		pedidosFiltrados = pedidos.filtrados(filtro);
+		model = new LazyDataModel<Pedido>() {
+
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public List<Pedido> load(int first, int pageSize, String sortField, SortOrder sortOrder,
+					Map<String, Object> filters) {
+
+				filtro.setPrimeiroRegistro(first);
+				filtro.setQuantidadeRegistros(pageSize);
+				filtro.setPropriedadeOrdenacao(sortField);
+				filtro.setAscendente(SortOrder.ASCENDING.equals(sortOrder));
+
+				setRowCount(pedidos.quantidadeFiltrados(filtro));
+
+				return pedidos.filtrados(filtro);
+			}
+
+		};
 	}
 
 	public void posProcessarXls(Object documento) {
@@ -65,12 +82,12 @@ private static final long serialVersionUID = 1L;
 		return StatusPedido.values();
 	}
 	
-	public List<Pedido> getPedidosFiltrados() {
-		return pedidosFiltrados;
-	}
-
 	public PedidoFilter getFiltro() {
 		return filtro;
+	}
+
+	public LazyDataModel<Pedido> getModel() {
+		return model;
 	}
 
 }
