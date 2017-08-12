@@ -1,4 +1,4 @@
-package com.algaworks.pedidovenda.converter;
+package com.algaworks.pedidovenda.controller;
 
 import java.io.IOException;
 import java.io.Serializable;
