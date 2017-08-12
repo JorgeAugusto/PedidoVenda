@@ -6,28 +6,25 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import javax.inject.Inject;
 
+import org.apache.commons.lang3.StringUtils;
 import org.primefaces.convert.ClientConverter;
 
 import com.algaworks.pedidovenda.model.Categoria;
 import com.algaworks.pedidovenda.repository.Categorias;
-import com.algaworks.pedidovenda.util.cdi.CDIServiceLocator;
 
 @FacesConverter(forClass = Categoria.class)
 public class CategoriaConverter implements Converter, ClientConverter {
 
-	// @Inject
+	@Inject
 	private Categorias categorias;
-
-	public CategoriaConverter() {
-		categorias = CDIServiceLocator.getBean(Categorias.class);
-	}
 
 	@Override
 	public Object getAsObject(FacesContext context, UIComponent component, String value) {
 		Categoria retorno = null;
 
-		if (value != null) {
+		if (StringUtils.isNotEmpty(value)) {
 			Long id = new Long(value);
 			retorno = categorias.porId(id);
 		}
